@@ -1,0 +1,37 @@
+# Get all contacts
+GET http://localhost:3001/api/contacts
+Accept: application/json
+
+###
+# Get info
+GET http://localhost:3001/info
+Accept: application/json
+
+###
+# Get a single contact
+GET http://localhost:3001/api/contacts/1
+Accept: application/json
+
+###
+# Request a nonexistent contact
+GET http://localhost:3001/api/contacts/999
+Accept: application/json
+
+###
+# Delete a single contact
+DELETE http://localhost:3001/api/contacts/1
+Accept: application/json
+
+###
+# Add a contact
+POST http://localhost:3001/api/contacts
+Content-Type: application/json
+Accept: application/json
+
+{"name": "John Doe", "number": "123455676"}
+
+
+###
+# Test unknownEndpoint
+GET http://localhost:3001/asdsadasdasdas
+Accept: application/json
