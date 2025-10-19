@@ -9,7 +9,7 @@ Accept: application/json
 
 ###
 # Get a single contact
-GET http://localhost:3001/api/contacts/1
+GET http://localhost:3001/api/contacts/68f535064c609b73823b08e8
 Accept: application/json
 
 ###
@@ -33,5 +33,5 @@ Accept: application/json
 
 ###
 # Test unknownEndpoint
-GET http://localhost:3001/asdsadasdasdas
+GET https://localhost:3001/asdsadasdasdas
 Accept: application/json
