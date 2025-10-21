@@ -12,6 +12,8 @@ const errorHandler = (error, request, response, next) => {
 
     if (error.name === 'CastError') {
         return response.status(400).send({ error: 'malformatted id' })
+    } else if (error.name === 'ValidationError') {
+        return response.status(400).json({ error: error.message })
     }
 
     next(error)
@@ -66,20 +68,8 @@ app.delete('/api/contacts/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-app.post('/api/contacts', (request, response) => {
+app.post('/api/contacts', (request, response,next) => {
     const body = request.body
-
-    if (!body.name) {
-        return response.status(400).json({
-            error: 'name is required',
-        })
-    }
-
-    if (!body.number) {
-        return response.status(400).json({
-            error: 'number is required',
-        })
-    }
 
     const contact = new Contact({
         name: body.name,
@@ -89,10 +79,12 @@ app.post('/api/contacts', (request, response) => {
     contact.save().then(savedContact => {
         response.json(savedContact)
     })
+    .catch(error => next(error))
 })
 
 app.put('/api/contacts/:id', (request, response, next) => {
     const { name, number } = request.body
+    const opts = { runValidators: true };
 
     Contact.findById(request.params.id)
         .then(contact => {

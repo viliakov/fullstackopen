@@ -28,7 +28,15 @@ POST http://localhost:3001/api/contacts
 Content-Type: application/json
 Accept: application/json
 
-{"name": "John Doe", "number": "123455676"}
+{"name": "John", "number": "12-3455676"}
+
+###
+# Update a contact
+PUT http://localhost:3001/api/contacts/68f5d94d5a45a801c68462d3
+Content-Type: application/json
+Accept: application/json
+
+{"name": "John", "number": "9"}
 
 
 ###
